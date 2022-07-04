@@ -3,7 +3,7 @@ package SS03_Mang_PhuongThuc.bai_tap;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class ElementToArray {
+public class ThePushElementToArray {
     public static void main(String[] args) {
         int[] myList = {1, 2, 2, 4, 5, 6, 7, 8, 9};
         int x;

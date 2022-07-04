@@ -2,7 +2,7 @@ package SS03_Mang_PhuongThuc.bai_tap;
 
 import java.util.Scanner;
 
-public class TowDimensionalArray {
+public class TheMaxTwoDimensionalArray {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhập vào số hàng:");
