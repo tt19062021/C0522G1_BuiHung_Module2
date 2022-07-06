@@ -1,5 +1,6 @@
 package SS03_Mang_PhuongThuc.bai_tap;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class TheMaxTwoDimensionalArray {
@@ -7,8 +8,10 @@ public class TheMaxTwoDimensionalArray {
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhập vào số hàng:");
         int row = sc.nextInt();
+
         System.out.print("Nhập vào số cột:");
         int col = sc.nextInt();
+
         int[][] arr2D = new int[row][col];
 
         for (int i = 0; i < row; i++) {                          //Nhap vao ma trận
@@ -18,11 +21,12 @@ public class TheMaxTwoDimensionalArray {
             }
         }
         System.out.println("Ma trận arr2D");                    // in ra ma trận
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < col; j++) {
-                System.out.print(arr2D[i][j] + "\t");
-            }
-            System.out.println("\n");
+        for (int i = 0; i < arr2D.length; i++) {
+            System.out.println(Arrays.toString(arr2D[i]));
+//            for (int j = 0; j < col; j++) {
+//                System.out.print(arr2D[i][j] + "\t");
+//            }
+//            System.out.println("\n");
         }
 
         int max = maxValue(arr2D);
