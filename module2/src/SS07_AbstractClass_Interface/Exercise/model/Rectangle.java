@@ -1,6 +1,6 @@
-package SS06_Inheritance.Practice;
+package SS07_AbstractClass_Interface.Exercise.model;
 
-public class Rectangle extends Shape {
+public class Rectangle extends Shape implements Resizeable {
     private double width = 1.0;
     private double length = 1.0;
 
@@ -35,7 +35,7 @@ public class Rectangle extends Shape {
     }
 
     public double getArea() {
-        return width * this.length;
+        return width * length ;
     }
 
     public double getPerimeter() {
@@ -52,4 +52,9 @@ public class Rectangle extends Shape {
                 + super.toString();
     }
 
+    @Override
+    public void resize(double percent) {
+        setWidth(getWidth() + getWidth() * percent / 100);
+        setLength(getLength() + getLength() * percent / 100);
+    }
 }

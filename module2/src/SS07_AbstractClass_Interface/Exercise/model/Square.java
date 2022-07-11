@@ -1,6 +1,6 @@
-package SS06_Inheritance.Practice;
+package SS07_AbstractClass_Interface.Exercise.model;
 
-public class Square extends Shape {
+public class Square extends Shape implements Resizeable {
     private double side = 1;
 
     public Square() {
@@ -10,7 +10,7 @@ public class Square extends Shape {
         this.side = side;
     }
 
-    public Square(String color, boolean filled, double side) {
+    public Square(double side, String color, boolean filled) {
         super(color, filled);
         this.side = side;
     }
@@ -39,4 +39,12 @@ public class Square extends Shape {
                 + super.toString();
     }
 
+    @Override
+    public void resize(double percent) {
+        setSide(getSide() + getSide() * percent / 100);
+    }
+    @Override
+    public void howToColor(){
+        System.out.println("Color all four sides");
+    }
 }

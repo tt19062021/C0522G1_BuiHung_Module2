@@ -10,7 +10,7 @@ public class SquareTest {
         square = new Square(2.3);
         System.out.println(square);
 
-        square = new Square(5.8, "yellow", true);
+        square = new Square("red", true, 5.0);
         System.out.println(square);
     }
 }
