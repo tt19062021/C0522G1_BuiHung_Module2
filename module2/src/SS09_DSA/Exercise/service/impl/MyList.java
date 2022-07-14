@@ -1,7 +1,6 @@
-package SS09_DSA.Exercise.model;
+package SS09_DSA.Exercise.service.impl;
 
 import java.util.Arrays;
-import java.util.List;
 
 public class MyList<E>  {
 
@@ -108,5 +107,9 @@ public class MyList<E>  {
         elements[size -1] = null;
         size--;
         return element;
+    }
+
+
+    public void remove() {
     }
 }

@@ -1,2 +1,5 @@
-package MVC.service;public class IPersonService {
+package MVC.service;
+
+public interface IPersonService {
+    void findAll();
 }

@@ -35,6 +35,6 @@ public abstract class Shape implements Resizeable {
                 + " and "
                 + (isFilled() ? "filled" : "not filled");
     }
-
     public abstract double getArea();
+
 }

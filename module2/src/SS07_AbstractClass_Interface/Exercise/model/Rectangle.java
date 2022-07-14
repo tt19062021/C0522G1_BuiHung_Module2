@@ -1,6 +1,6 @@
 package SS07_AbstractClass_Interface.Exercise.model;
 
-public class Rectangle extends Shape implements Resizeable {
+public class Rectangle extends Shape {
     private double width = 1.0;
     private double length = 1.0;
 
@@ -36,6 +36,11 @@ public class Rectangle extends Shape implements Resizeable {
 
     public double getArea() {
         return width * length ;
+    }
+
+    @Override
+    public void howToColor() {
+
     }
 
     public double getPerimeter() {

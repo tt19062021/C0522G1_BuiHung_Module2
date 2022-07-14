@@ -1,6 +1,6 @@
 package SS07_AbstractClass_Interface.Exercise.model;
 
-public class Square extends Shape implements Resizeable {
+public class Square extends Shape  {
     private double side = 1;
 
     public Square() {
@@ -43,8 +43,8 @@ public class Square extends Shape implements Resizeable {
     public void resize(double percent) {
         setSide(getSide() + getSide() * percent / 100);
     }
-    @Override
-    public void howToColor(){
-        System.out.println("Color all four sides");
-    }
+//    @Override
+//    public void howToColor(){
+//        System.out.println("Color all four sides");
+//    }
 }

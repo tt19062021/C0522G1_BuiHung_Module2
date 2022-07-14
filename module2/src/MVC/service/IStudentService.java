@@ -1,2 +1,5 @@
-package MVC.service;public class IStudentService {
+package MVC.service;
+
+public interface IStudentService {
+    void findAll();
 }

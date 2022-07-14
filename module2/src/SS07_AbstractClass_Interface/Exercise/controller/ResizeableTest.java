@@ -18,7 +18,6 @@ public class ResizeableTest {
         for (Shape shape : shapes) {
             System.out.println(shape + "\n AREA: " + shape.getArea());
         }
-
         System.out.println("\n percent: " + percent + "%\n");
 
         System.out.println("After-resize: ");

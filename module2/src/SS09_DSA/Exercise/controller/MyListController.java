@@ -1,16 +1,14 @@
 package SS09_DSA.Exercise.controller;
 
-import SS09_DSA.Exercise.model.MyList;
-import SS09_DSA.Exercise.model.Student;
 import SS09_DSA.Exercise.service.impl.StudentService;
 
 import java.util.Scanner;
 
 
 public class MyListController {
-       StudentService studentService =new StudentService();
+    private  StudentService studentService =new StudentService();
     public void displayMenu() {
-        Scanner scanner = new Scanner(System.in);
+         Scanner scanner = new Scanner(System.in);
         int choose;
         do {
             System.out.println("========Danh sách lớp C0522G1-CODEGYM ========");
@@ -29,14 +27,16 @@ public class MyListController {
             switch (choose) {
                 case 1:
                     studentService.all();
-
+                    break;
                 case 2:
                     studentService.addStudent();
                     System.out.println("Danh sách sau khi tạo:");
                     studentService.display();
+                    break;
                 case 3:
                     break;
                 case 4:
+                    studentService.removeStudent();
                     break;
                 case 5:
                     System.exit(0);
