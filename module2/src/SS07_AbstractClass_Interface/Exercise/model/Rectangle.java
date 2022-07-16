@@ -38,10 +38,7 @@ public class Rectangle extends Shape {
         return width * length ;
     }
 
-    @Override
-    public void howToColor() {
 
-    }
 
     public double getPerimeter() {
         return 2 * (width + this.length);
