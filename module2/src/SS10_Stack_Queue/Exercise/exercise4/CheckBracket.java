@@ -10,7 +10,7 @@ public class CheckBracket {
         String str1 = scanner.nextLine();
         System.out.println(CheckBracketTest(str1));
     }
-    
+
     public static boolean CheckBracketTest(String str) {
         Stack<Character> stack = new Stack<>();
         for (int i = 0; i < str.length(); i++) {
