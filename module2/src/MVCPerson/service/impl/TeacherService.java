@@ -1,37 +1,35 @@
 package MVCPerson.service.impl;
 
 import MVCPerson.model.Student;
-import MVCPerson.service.IStudentService;
+import MVCPerson.model.Teacher;
+import MVCPerson.service.ITeacherService;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
-public class StudentService implements IStudentService {
+public class TeacherService implements ITeacherService {
     private static Scanner scanner = new Scanner(System.in);
-    private static List<Student> studentList = new ArrayList<>();
+    private static List<Teacher> teacherList = new ArrayList<>();
 
     static {
-     studentList.add(new Student(1,"Nguyen Van Nam",5.5));
-        studentList.add(new Student(2,"Tra Van Kieu",6.0));
-        studentList.add(new Student(3,"Hoang Chau Cach Cach",8));
-        studentList.add(new Student(4,"Ngu A Ka",9));
-        studentList.add(new Student(5,"Dam Huong",10));
-        studentList.add(new Student(6,"Quach Tuan Du",9));
+        teacherList.add(new Teacher(12,"Mac Van Khoa",1000000));
+        teacherList.add(new Teacher(11,"Quynh Anh",1200000));
     }
-
     @Override
     public void findAll() {
-        for (Student student : studentList){
-            System.out.println(student);
+        for(Teacher teacher: teacherList){
+            System.out.println(teacher);
         }
     }
 
     @Override
-    public void searchTeacherByIdAndName() {
+    public void searchById() {
         int choose;
         boolean isExist = false;
 
         do {
-            System.out.println("Tìm kiểm học sinh theo : \n" +
+            System.out.println("Tìm kiểm giáo viên theo: \n" +
                     "1. Id.\n" +
                     "2. Tên.");
             choose = Integer.parseInt(scanner.nextLine());
@@ -45,9 +43,9 @@ public class StudentService implements IStudentService {
             System.out.print("Mời bạn nhập id cần tìm kiếm: ");
             int idFind = Integer.parseInt(scanner.nextLine());
 
-            for (Student student : studentList) {
-                if (student.getId() == idFind) {
-                    System.out.println(student);
+            for (Teacher teacher : teacherList) {
+                if (teacher.getId() == idFind) {
+                    System.out.println(teacher);
                     isExist = true;
                     break;
                 }
@@ -57,9 +55,9 @@ public class StudentService implements IStudentService {
             System.out.print("Mời bạn nhập tên cần tìm kiếm: ");
             String nameFind = scanner.nextLine();
 
-            for (Student student : studentList) {
-                if (student.getName().toLowerCase().contains(nameFind.toLowerCase())) {
-                    System.out.println(student);
+            for (Teacher teacher : teacherList) {
+                if (teacher.getName().toLowerCase().contains(nameFind.toLowerCase())) {
+                    System.out.println(teacher);
                     isExist = true;
                 }
             }
@@ -70,13 +68,12 @@ public class StudentService implements IStudentService {
     }
 
     @Override
-    public void addStudent() {
-        Student student = infoStudent();
-        studentList.add(student);
+    public void addTeacher() {
+        Teacher teacher = infoTeacher();
+        teacherList.add(teacher);
         System.out.print("Thêm mới thành công!!");
     }
-
-    public static Student infoStudent(){
+    public static Teacher infoTeacher(){
         System.out.print("Nhập id: ");
         int id = Integer.parseInt(scanner.nextLine());
 
@@ -84,9 +81,10 @@ public class StudentService implements IStudentService {
         String name = scanner.nextLine();
 
         System.out.print("Nhập điểm: ");
-        double score = Double.parseDouble(scanner.nextLine());
+        double salary = Double.parseDouble(scanner.nextLine());
 
-        Student student = new Student(id, name, score);
-        return student;
+        Teacher teacher = new Teacher(id, name, salary);
+        return teacher;
     }
+
 }

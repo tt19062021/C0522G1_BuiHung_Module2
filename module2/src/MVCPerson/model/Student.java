@@ -3,6 +3,9 @@ package MVCPerson.model;
 public class Student extends Person{
     private double score;
 
+    public Student() {
+    }
+
     public Student(double score) {
         this.score = score;
     }
@@ -22,8 +25,7 @@ public class Student extends Person{
 
     @Override
     public String toString() {
-        return super.toString() + "Student{" +
-                "score=" + score +
-                '}';
+        return super.toString() +
+                " ,score= " + score ;
     }
 }
