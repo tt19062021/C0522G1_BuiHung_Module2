@@ -12,7 +12,7 @@ public class MainController {
     private static MenuAddController menuAddController = new MenuAddController();
     private static IStudentService iStudentService = new StudentService();
     private static ITeacherService iTeacherService = new TeacherService();
-
+private static SortMenuController sortMenuController = new SortMenuController();
 
     public void displayMenu() {
         Scanner scanner = new Scanner(System.in);
@@ -22,7 +22,7 @@ public class MainController {
             System.out.println("1. Thêm mới");
             System.out.println("2. Danh sách");
             System.out.println("3. Tìm kiếm");
-            System.out.println("4. Chỉnh sửa");
+            System.out.println("4. Sắp xếp");
             System.out.println("5. Thoát");
             System.out.print("Lựa chọn: ");
             choose = Integer.parseInt(scanner.nextLine());
@@ -42,6 +42,7 @@ public class MainController {
                     menuSearchController.displayMenuSearch();
                     break;
                 case 4:
+                    sortMenuController.displaySort();
                     break;
                 case 5:
                     System.exit(0);

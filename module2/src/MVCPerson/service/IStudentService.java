@@ -4,4 +4,6 @@ public interface IStudentService {
     void findAll();
     void searchTeacherByIdAndName();
     void addStudent();
+    void sortUp();
+
 }

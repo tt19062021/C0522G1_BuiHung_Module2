@@ -6,32 +6,33 @@ import java.util.Scanner;
 public class BinarySearch {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Nhập vào sô phần tử của mảng");
+        System.out.print("Số phần tử trong mảng(ramdom) : ");
+        int size = Integer.parseInt(scanner.nextLine());
 
-        int[] arrays = new int[Integer.parseInt(scanner.nextLine())];
-        for (int i = 0; i < arrays.length; i++) {
-            arrays[i] = (int) (Math.random() * 1000);
+        int[] arr = new int[size];
+        for (int i = 0; i < size; i++) {
+            arr[i]=(int)(Math.random()*100);
         }
-        Arrays.sort(arrays);
+        Arrays.sort(arr);
+        System.out.println(Arrays.toString(arr));
 
-        System.out.println(Arrays.toString(arrays));
         System.out.println("Nhập vào sô cần tìm");
         int x = Integer.parseInt(scanner.nextLine());
 
-        System.out.println("Vj trí của số cần tìm trong mảng là: " + binarySearch(arrays, 0, arrays.length - 1, x));
+        System.out.println("Vị trí trong mảng là: " + binarySearch(arr,0,arr.length-1,x));
     }
 
-    static int binarySearch(int[] list,int left, int right, int key) {
+    static int binarySearch(int[] list, int left, int right, int key) {
         left = 0;
-        right = list.length - 1;
-        while (right >= left){
-            int mid = (left + right)/2;
-            if(key<list[mid]){
-                right = mid -1;
-            }else if(key == list[mid]){
+        right = list.length- 1;
+        while (right >= left) {
+            int mid = (left + right) / 2;
+            if (key < list[mid]) {
+                right = mid - 1;
+            } else if (key == list[mid]) {
                 return mid;
-            }else {
-                left = mid +1;
+            } else {
+                left = mid + 1;
             }
         }
         return -1;

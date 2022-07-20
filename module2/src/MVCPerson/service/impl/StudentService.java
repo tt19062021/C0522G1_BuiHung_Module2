@@ -2,12 +2,15 @@ package MVCPerson.service.impl;
 
 import MVCPerson.model.Student;
 import MVCPerson.service.IStudentService;
+import SS11_Java_Collection_Framework.Exercise2.MVC_Product.model.Product;
 
 import java.util.*;
 
 public class StudentService implements IStudentService {
     private static Scanner scanner = new Scanner(System.in);
     private static List<Student> studentList = new ArrayList<>();
+    private static SortByScoreUpService sortByScoreUpService = new SortByScoreUpService();
+    private static SortByScoreDownService sortPriceDowndService = new SortByScoreDownService();
 
     static {
      studentList.add(new Student(1,"Nguyen Van Nam",5.5));
@@ -74,6 +77,36 @@ public class StudentService implements IStudentService {
         Student student = infoStudent();
         studentList.add(student);
         System.out.print("Thêm mới thành công!!");
+    }
+
+    @Override
+    public void sortUp() {
+        int chose;
+        do {
+            System.out.println("1.Sắp xếp điểm tăng dần\n" +
+                    "2.Sắp xếp điểm giảm dần\n"+
+                    "3.Về menu chính \n");
+            chose = Integer.parseInt(scanner.nextLine());
+
+            switch (chose) {
+                case 1:
+                    studentList.sort(sortByScoreUpService);
+                    for (Student student : studentList) {
+                        System.out.println(student);
+                    }
+                    break;
+                case 2:
+                    studentList.sort(sortPriceDowndService);
+                    for (Student student : studentList) {
+                        System.out.println(student);
+                    }
+                    break;
+                case 3:
+                    return;
+                default:
+                    System.out.print("Mời bạn nhập lại!!!");
+            }
+        } while (true);
     }
 
     public static Student infoStudent(){
