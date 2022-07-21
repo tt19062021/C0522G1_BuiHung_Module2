@@ -5,5 +5,5 @@ public interface IStudentService {
     void searchTeacherByIdAndName();
     void addStudent();
     void sortUp();
-
+void sortNameByBubble();
 }

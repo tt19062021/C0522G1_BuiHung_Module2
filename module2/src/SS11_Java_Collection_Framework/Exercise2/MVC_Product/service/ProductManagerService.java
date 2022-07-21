@@ -65,6 +65,7 @@ public class ProductManagerService implements IProductManagerService {
         System.out.print("Id mới: ");
         int id = Integer.parseInt(scanner.nextLine());
         return id;
+
     }
 
     public static String inputName() {
@@ -123,7 +124,7 @@ public class ProductManagerService implements IProductManagerService {
         int chose;
         do {
             System.out.println("1.Sắp xếp giá tăng dần\n" +
-                    "2.Sắp xếp giá giảm dần\n"+
+                    "2.Sắp xếp giá giảm dần\n" +
                     "3.Về menu chính \n");
             chose = Integer.parseInt(scanner.nextLine());
 

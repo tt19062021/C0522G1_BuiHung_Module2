@@ -16,7 +16,7 @@ public class SortMenuController {
         int choose;
         do {
             System.out.println("1. Sắp xếp theo điểm ");
-            System.out.println("2. -----------");
+            System.out.println("2. Sắp xếp theo tên");
             System.out.println("3. Về menu chính");
 
             choose = Integer.parseInt(scanner.nextLine());
@@ -28,9 +28,11 @@ public class SortMenuController {
             switch (choose) {
                 case 1:
                     iStudentService.sortUp();
+                    iStudentService.findAll();
                     break;
                 case 2:
-
+                    iStudentService.sortNameByBubble();
+                    iStudentService.findAll();
                     break;
                 case 3:
                     return;
