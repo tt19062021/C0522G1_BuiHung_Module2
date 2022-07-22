@@ -76,7 +76,7 @@ public class StudentService implements IStudentService {
     public void addStudent() {
         Student student = infoStudent();
         studentList.add(student);
-        System.out.print("Thêm mới thành công!!");
+        System.out.println("Thêm mới thành công!!");
     }
 
     @Override
@@ -145,8 +145,19 @@ public class StudentService implements IStudentService {
         System.out.print("Nhập tên:");
         String name = scanner.nextLine();
 
-        System.out.print("Nhập điểm: ");
-        double score = Double.parseDouble(scanner.nextLine());
+        double score =0;
+        while (true){
+            try{
+                System.out.print("Nhập điểm :");
+                score = Double.parseDouble(scanner.nextLine());
+             break;
+            }catch(NumberFormatException e){
+                System.out.print("Vui lòng nhập số!");
+            }
+
+        }
+//        System.out.print("Nhập điểm: ");
+//        double score = Double.parseDouble(scanner.nextLine());
 
         Student student = new Student(id, name, score);
         return student;
