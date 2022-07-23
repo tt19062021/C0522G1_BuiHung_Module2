@@ -3,8 +3,11 @@ package MVCPerson.service.impl;
 import MVCPerson.exception.DuplicateIDException;
 import MVCPerson.model.Student;
 import MVCPerson.service.IStudentService;
+import MVCPerson.untils.ReadFileUntil;
+import MVCPerson.untils.WriteFileUntil;
 import SS11_Java_Collection_Framework.Exercise2.MVC_Product.model.Product;
 
+import java.io.IOException;
 import java.util.*;
 
 public class StudentService implements IStudentService {
@@ -13,20 +16,22 @@ public class StudentService implements IStudentService {
     private static SortByScoreUpService sortByScoreUpService = new SortByScoreUpService();
     private static SortByScoreDownService sortPriceDowndService = new SortByScoreDownService();
 
-    static {
-        studentList.add(new Student(1, "Nguyen Van Nam", 5.5));
-        studentList.add(new Student(2, "Tra Van Kieu", 6.0));
-        studentList.add(new Student(3, "Hoang Chau Cach Cach", 8));
-        studentList.add(new Student(4, "Ngu A Ka", 9));
-        studentList.add(new Student(5, "Dam Huong", 10));
-        studentList.add(new Student(6, "Quach Tuan Du", 9));
-    }
+//    static {
+//        studentList.add(new Student(1, "Nguyen Van Nam", 5.5));
+//        studentList.add(new Student(2, "Tra Van Kieu", 6.0));
+//        studentList.add(new Student(3, "Hoang Chau Cach Cach", 8));
+//        studentList.add(new Student(4, "Ngu A Ka", 9));
+//        studentList.add(new Student(5, "Dam Huong", 10));
+//        studentList.add(new Student(6, "Quach Tuan Du", 9));
+//    }
 
     @Override
-    public void findAll() {
+    public void findAll() throws IOException {
+      studentList=  ReadFileUntil.readStudentFile("src/MVCPerson/untils/StudentList.txt");
         for (Student student : studentList) {
             System.out.println(student);
         }
+
     }
 
     @Override
@@ -73,10 +78,47 @@ public class StudentService implements IStudentService {
     }
 
     @Override
-    public void addStudent() {
-        Student student = infoStudent();
-        studentList.add(student);
-        System.out.println("Thêm mới thành công!!");
+    public void addStudent() throws IOException {
+        List<Student> students = ReadFileUntil.readStudentFile("src/MVCPerson/untils/StudentList.txt");
+        int id = 0;
+        while (true) {
+            try {
+                System.out.print("Nhập id: ");
+                id = Integer.parseInt(scanner.nextLine());
+
+                for (Student student : studentList) {
+                    if (student.getId() == id) {
+                        throw new DuplicateIDException("Trùng id, vui lòng nhập lại!");
+                    }
+                }
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Vui lòng nhập số!");
+            } catch (DuplicateIDException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        System.out.print("Nhập tên:");
+        String name = scanner.nextLine();
+
+        double score =0;
+        while (true){
+            try{
+                System.out.print("Nhập điểm :");
+                score = Double.parseDouble(scanner.nextLine());
+                break;
+            }catch(NumberFormatException e){
+                System.out.print("Vui lòng nhập số!");
+            }
+
+        }
+//        System.out.print("Nhập điểm: ");
+//        double score = Double.parseDouble(scanner.nextLine());
+
+        Student student = new Student(id, name, score);
+        students.add(student);
+
+        WriteFileUntil.writeStudentFile("src/MVCPerson/untils/StudentList.txt",students);
     }
 
     @Override
@@ -123,44 +165,5 @@ public class StudentService implements IStudentService {
         }
     }
 
-    public static Student infoStudent() {
-        int id = 0;
-        while (true) {
-            try {
-                System.out.print("Nhập id: ");
-                id = Integer.parseInt(scanner.nextLine());
 
-                for (Student student : studentList) {
-                    if (student.getId() == id) {
-                        throw new DuplicateIDException("Trùng id, vui lòng nhập lại!");
-                    }
-                }
-                break;
-            } catch (NumberFormatException e) {
-                System.out.println("Vui lòng nhập số!");
-            } catch (DuplicateIDException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        System.out.print("Nhập tên:");
-        String name = scanner.nextLine();
-
-        double score =0;
-        while (true){
-            try{
-                System.out.print("Nhập điểm :");
-                score = Double.parseDouble(scanner.nextLine());
-             break;
-            }catch(NumberFormatException e){
-                System.out.print("Vui lòng nhập số!");
-            }
-
-        }
-//        System.out.print("Nhập điểm: ");
-//        double score = Double.parseDouble(scanner.nextLine());
-
-        Student student = new Student(id, name, score);
-        return student;
-
-    }
 }

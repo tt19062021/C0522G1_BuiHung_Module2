@@ -1,9 +1,15 @@
 package MVCPerson.service;
 
+import java.io.IOException;
+
 public interface IStudentService {
-    void findAll();
+    void findAll() throws IOException;
+
     void searchTeacherByIdAndName();
-    void addStudent();
+
+    void addStudent() throws IOException;
+
     void sortUp();
-void sortNameByBubble();
+
+    void sortNameByBubble();
 }

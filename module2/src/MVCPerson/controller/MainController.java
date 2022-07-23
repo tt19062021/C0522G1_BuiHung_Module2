@@ -5,6 +5,7 @@ import MVCPerson.service.ITeacherService;
 import MVCPerson.service.impl.StudentService;
 import MVCPerson.service.impl.TeacherService;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class MainController {
@@ -14,7 +15,7 @@ public class MainController {
     private static ITeacherService iTeacherService = new TeacherService();
 private static SortMenuController sortMenuController = new SortMenuController();
 
-    public void displayMenu() {
+    public void displayMenu() throws IOException {
         Scanner scanner = new Scanner(System.in);
         int choose;
         do {

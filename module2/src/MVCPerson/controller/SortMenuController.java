@@ -5,13 +5,14 @@ import MVCPerson.service.ITeacherService;
 import MVCPerson.service.impl.StudentService;
 import MVCPerson.service.impl.TeacherService;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class SortMenuController {
     private static ITeacherService iTeacherService = new TeacherService();
     private static IStudentService iStudentService = new StudentService();
 
-    public void displaySort() {
+    public void displaySort() throws IOException {
         Scanner scanner = new Scanner(System.in);
         int choose;
         do {
