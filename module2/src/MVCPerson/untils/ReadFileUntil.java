@@ -1,6 +1,7 @@
 package MVCPerson.untils;
 
 import MVCPerson.model.Student;
+import MVCPerson.model.Teacher;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -28,4 +29,14 @@ public class ReadFileUntil {
         }
         return students;
      }
+    public static List<Teacher> readTeacherFile(String path) throws IOException {
+        List<String> stringList = readFile(path);
+        List<Teacher> teachers = new ArrayList<>();
+        String[] info ;
+        for(String line : stringList){
+            info =line.split(",");
+            teachers.add(new Teacher(Integer.parseInt(info[0]),info[1],Double.parseDouble(info[2])));
+        }
+        return teachers;
+    }
 }

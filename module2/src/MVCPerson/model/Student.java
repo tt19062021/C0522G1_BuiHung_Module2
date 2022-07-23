@@ -28,7 +28,7 @@ public class Student extends Person{
         return super.toString() +
                 " ,score= " + score ;
     }
-    public String getInfo(){
+    public String getInfoStudent(){
         return String.format("%s,%s,%s\n",getId(),getName(),getScore());
     }
 }

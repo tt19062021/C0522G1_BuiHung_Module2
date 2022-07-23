@@ -1,0 +1,3 @@
+9,HaiTT,1000
+10,ChanhTT,1500
+11,QuangTT,2000

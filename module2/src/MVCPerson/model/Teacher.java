@@ -26,4 +26,7 @@ public class Teacher extends Person{
                 " , salary=" + salary
                 ;
     }
+    public String getInfoTeacher(){
+        return String.format("%s,%s,%s\n",getId(),getName(),getSalary());
+    }
 }

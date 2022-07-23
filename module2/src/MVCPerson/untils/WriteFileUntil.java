@@ -1,6 +1,7 @@
 package MVCPerson.untils;
 
 import MVCPerson.model.Student;
+import MVCPerson.model.Teacher;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -19,7 +20,14 @@ public class WriteFileUntil {
     public static void writeStudentFile(String path, List<Student> students) throws IOException {
         String data = "";
         for(Student student :students){
-            data += student.getInfo();
+            data += student.getInfoStudent();
+        }
+        writeFile(path,data);
+    }
+    public static void writeTeacherFile(String path, List<Teacher> teachers) throws IOException {
+        String data = "";
+        for (Teacher teacher : teachers) {
+            data += teacher.getInfoTeacher();
         }
         writeFile(path,data);
     }
