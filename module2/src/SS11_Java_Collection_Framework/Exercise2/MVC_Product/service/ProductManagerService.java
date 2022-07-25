@@ -1,44 +1,35 @@
 package SS11_Java_Collection_Framework.Exercise2.MVC_Product.service;
 
 import SS11_Java_Collection_Framework.Exercise2.MVC_Product.model.Product;
+import SS11_Java_Collection_Framework.Exercise2.MVC_Product.untils.ReadWriteObjectToFile;
 
 import java.util.*;
 
 public class ProductManagerService implements IProductManagerService {
     private static Scanner scanner = new Scanner(System.in);
-    private static List<Product> productList = new ArrayList<>();
+
     private static SortPriceUpService sortPriceUpService = new SortPriceUpService();
     private static SortPriceDowndService sortPriceDowndService = new SortPriceDowndService();
+    private static final String PATHT = "src/SS11_Java_Collection_Framework/Exercise2/MVC_Product/untils/test.dat";
+//    static {
+//        productList.add(new Product(1, "sửa tươi", 5000));
+//        productList.add(new Product(2, "bánh mỳ", 3000));
+//        productList.add(new Product(3, "quyển vở 200 trang", 10000));
+//    }
 
-    static {
-        productList.add(new Product(1, "sửa tươi", 5000));
-        productList.add(new Product(2, "bánh mỳ", 3000));
-        productList.add(new Product(3, "quyển vở 200 trang", 10000));
-    }
 
-    public Product infoProduct() {
-        System.out.print("Nhập id sản phẩm:");
-        int id = Integer.parseInt(scanner.nextLine());
-
-        System.out.print("Nhập tên sản phẩm:");
-        String name = scanner.nextLine();
-
-        System.out.print("Nhập giá sản phẩm:");
-        double price = Double.parseDouble(scanner.nextLine());
-
-        Product product = new Product(id, name, price);
-        return product;
-    }
 
     @Override
     public void addProduct() {
-        Product product = infoProduct();
-        productList.add(product);
+        List<Product> productList = ReadWriteObjectToFile.readDataFromFile(PATHT);
+        productList.add(new Product(inputId(),inputName(),inputPrice()));
+        ReadWriteObjectToFile.writeToFile(PATHT, productList);
         System.out.println("Thêm mới thành công");
     }
 
     @Override
     public void removeProductById() {
+        List<Product> productList = ReadWriteObjectToFile.readDataFromFile(PATHT);
         System.out.print("Nhập vào id cần xóa");
         int id = Integer.parseInt(scanner.nextLine());
         boolean isFlag = false;
@@ -50,6 +41,7 @@ public class ProductManagerService implements IProductManagerService {
                 int chooseYesNo = Integer.parseInt(scanner.nextLine());
                 if (chooseYesNo == 1) {
                     productList.remove(product);
+                    ReadWriteObjectToFile.writeToFile(PATHT, productList);
                     System.out.println("Xóa thành công!.");
                 }
                 isFlag = true;
@@ -82,6 +74,7 @@ public class ProductManagerService implements IProductManagerService {
 
     @Override
     public void repairProductById() {
+        List<Product> productList = ReadWriteObjectToFile.readDataFromFile(PATHT);
         System.out.println("Nhập vào id cần sửa");
         int id = Integer.parseInt(scanner.nextLine());
         for (int i = 0; i < productList.size(); i++) {
@@ -89,6 +82,7 @@ public class ProductManagerService implements IProductManagerService {
                 productList.get(i).setId(inputId());
                 productList.get(i).setName(inputName());
                 productList.get(i).setPrice(inputPrice());
+                ReadWriteObjectToFile.writeToFile(PATHT, productList);
                 break;
             }
         }
@@ -96,6 +90,7 @@ public class ProductManagerService implements IProductManagerService {
 
     @Override
     public void displayProduct() {
+        List<Product> productList = ReadWriteObjectToFile.readDataFromFile(PATHT);
         for (Product product : productList) {
             System.out.println(product);
         }
@@ -103,6 +98,8 @@ public class ProductManagerService implements IProductManagerService {
 
     @Override
     public void searchProductByName() {
+        List<Product> productList = ReadWriteObjectToFile.readDataFromFile(PATHT);
+
         System.out.println("Nhập tên sản phẩm cần tìm: ");
         String name = scanner.nextLine();
 
@@ -121,6 +118,8 @@ public class ProductManagerService implements IProductManagerService {
 
     @Override
     public void sort() {
+        List<Product> productList = ReadWriteObjectToFile.readDataFromFile(PATHT);
+
         int chose;
         do {
             System.out.println("1.Sắp xếp giá tăng dần\n" +

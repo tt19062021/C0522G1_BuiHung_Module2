@@ -6,12 +6,13 @@ import SS11_Java_Collection_Framework.Exercise2.MVC_Product.service.ProductManag
 import java.util.Scanner;
 
 public class MenuProductController {
-    private static Scanner scanner = new Scanner(System.in);
-    private static IProductManagerService iProductManagerService = new ProductManagerService();
+
 
     public void displayMenuProduct() {
+
+        IProductManagerService iProductManagerService = new ProductManagerService();
         Scanner scanner = new Scanner(System.in);
-        int choose;
+        int choose = 0;
         do {
             System.out.println("Chương Trình Quản Lý Sản Phẩm");
             System.out.println("1. Thêm sản phẩm");
@@ -21,12 +22,12 @@ public class MenuProductController {
             System.out.println("5. Tìm kiếm sản phẩm theo tên");
             System.out.println("6. Sắp xếp sản phẩm tăng dần, giảm dần theo giá");
             System.out.println("7. Thoát");
-            System.out.print("Nhập sự lựa chọn của bạn: ");
-            choose = Integer.parseInt(scanner.nextLine());
 
-            if (choose < 1 || choose > 7) {
-                System.out.println("lựa chọn không hợp lệ, vui lòng nhập lại: ");
-                continue;
+            try {
+                System.out.print("Nhập sự lựa chọn của bạn: ");
+                choose = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Vui lòng nhập số !!!");
             }
             switch (choose) {
                 case 1:
@@ -49,6 +50,8 @@ public class MenuProductController {
                     break;
                 case 7:
                     System.exit(0);
+                default:
+                    System.out.println("Vui lòng chọn lại! ");
             }
         } while (true);
     }
