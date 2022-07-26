@@ -1,6 +1,7 @@
 package MVC_Furama_Resort.untils;
 
 
+import MVC_Furama_Resort.model.Customer;
 import MVC_Furama_Resort.model.Employee;
 
 import java.io.BufferedReader;
@@ -50,5 +51,25 @@ public class ReadFileUntil {
                     Integer.parseInt(info[9])));
         }
         return employeeList;
+    }
+
+    public static List<Customer> readCustomerFile(String path)   {
+        List<String> stringList = readFile(path);
+        List<Customer> customerList = new ArrayList<>();
+        String[] info ;
+        for(String line : stringList){
+            info =line.split(",");
+            customerList.add(new Customer(
+                    Integer.parseInt(info[0]),
+                    info[1],
+                    info[2],
+                    info[3],
+                    Integer.parseInt(info[4]),
+                    Integer.parseInt(info[5]),
+                    info[6],
+                    info[7],
+                    info[8]));
+        }
+        return customerList;
     }
 }

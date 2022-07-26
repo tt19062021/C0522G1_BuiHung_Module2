@@ -12,7 +12,7 @@ public class BookingMenuController {
             System.out.println("3.\tCreate new constracts");
             System.out.println("4.\tDisplay list contracts");
             System.out.println("5.\tEdit contracts");
-            System.out.println("6.\tReturn main menu");
+            System.out.println("6.\tReturn Main menu");
             choose = Integer.parseInt(scanner.nextLine());
 
             if (choose < 1 || choose > 6) {

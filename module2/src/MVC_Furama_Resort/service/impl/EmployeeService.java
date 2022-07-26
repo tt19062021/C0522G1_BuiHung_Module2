@@ -4,7 +4,7 @@ import MVC_Furama_Resort.model.Employee;
 import MVC_Furama_Resort.service.IEmployeeService;
 import MVC_Furama_Resort.untils.ReadFileUntil;
 import MVC_Furama_Resort.untils.WriteFileUntil;
-import SS11_Java_Collection_Framework.Exercise2.MVC_Product.model.Product;
+
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,8 +13,8 @@ import java.util.Scanner;
 
 public class EmployeeService implements IEmployeeService {
     private static List<Employee> employeeList = new ArrayList<>();
-    private static final String PATH = "src/MVC_Furama_Resort/untils/ListEmployee.csv";
-    private static Scanner sc = new Scanner(System.in);
+    private static final String PATH = "src/MVC_Furama_Resort/untils/listemployee.csv";
+     Scanner sc = new Scanner(System.in);
 
     @Override
     public void display() throws IOException {
@@ -46,20 +46,33 @@ public class EmployeeService implements IEmployeeService {
 
     public String inputName() {
         System.out.print("Nhập tên: ");
-        String name = sc.nextLine();
-        return name;
+        return sc.nextLine();
     }
 
     public String inputBirthDay() {
         System.out.print("Nhập ngàysinh/tháng/năm: ");
-        String birthDay = sc.nextLine();
-        return birthDay;
+        return sc.nextLine();
     }
 
     public String inputGender() {
-        System.out.print("Nhập giới tính (Nam hoặc Nữ): ");
-        String gender = sc.nextLine();
-        return gender;
+        System.out.print("Nhập giới tính: \n"+
+                "1.Nam\n"+
+                "2.Nữ");
+        int chose = 0 ;
+        do{
+            try{
+                chose  = Integer.parseInt(sc.nextLine());
+            }catch(NumberFormatException e){
+                System.out.println("Vui lòng nhập số!!");
+            }switch(chose){
+                case 1:
+                    return "Nam";
+                case 2:
+                    return "Nữ";
+                default:
+                    System.out.println("Nhập không đúng!!,Vui lòng nhập lại.");
+            }
+        }while(true);
     }
 
     public int inputIdCard() {
@@ -92,20 +105,67 @@ public class EmployeeService implements IEmployeeService {
 
     public String inputGmail() {
         System.out.print("Nhập gmail: ");
-        String gmail = sc.nextLine();
-        return gmail;
+        return sc.nextLine();
     }
 
     public String inputDegree() {
-        System.out.print("Nhập vào trình độ: ");
-        String degree = sc.nextLine();
-        return degree;
+        System.out.print("Nhập trình độ hiện có:\n" +
+                "1.Đại học\n" +
+                "2.Cao đẳng\n" +
+                "3.Trung cấp\n" +
+                "4.Sau đại học");
+        int chose = 0 ;
+        do{
+            try{
+                chose  = Integer.parseInt(sc.nextLine());
+            }catch(NumberFormatException e){
+                System.out.println("Vui lòng nhập số!!");
+            }switch(chose){
+                case 1:
+                    return "Đại học";
+                case 2:
+                    return "Cao đẳng";
+                case 3:
+                    return "Trung cấp";
+                case 4:
+                    return "Sau đại học";
+                default:
+                    System.out.println("Nhập không đúng!!,Vui lòng nhập lại.");
+            }
+        }while(true);
     }
 
     public String inputPosition() {
-        System.out.print("Nhập vào chức vụ thuộc công ty: ");
-        String position = sc.nextLine();
-        return position;
+        System.out.print("Vị trí nhân viên:\n" +
+                "1.Lễ tân\n" +
+                "2.Phục vụ\n" +
+                "3.Quản lý\n" +
+                "4.Chuyên viên\n" +
+                "5.Giám sát\n" +
+                "6.Giám đốc");
+        int chose = 0 ;
+        do{
+            try{
+                chose  = Integer.parseInt(sc.nextLine());
+            }catch(NumberFormatException e){
+                System.out.println("Vui lòng nhập số!!");
+            }switch(chose){
+                case 1:
+                    return "Lễ tân";
+                case 2:
+                    return "Phục vụ";
+                case 3:
+                    return "Quản lý";
+                case 4:
+                    return "Chuyên viên";
+                case 5:
+                    return "Giám sát";
+                case 6:
+                    return "Giám đốc";
+                default:
+                    System.out.println("Nhập không đúng!!,Vui lòng nhập lại.");
+            }
+        }while(true);
     }
 
     public int inputSalary() {
@@ -124,7 +184,7 @@ public class EmployeeService implements IEmployeeService {
 
     @Override
     public void add() {
-        List<Employee> employeeList = ReadFileUntil.readEmployeeFile(PATH);
+         employeeList = ReadFileUntil.readEmployeeFile(PATH);
         Employee employee = new Employee(inputId()
                 , inputName()
                 , inputBirthDay()
@@ -142,43 +202,46 @@ public class EmployeeService implements IEmployeeService {
 
     @Override
     public void repair() {
-        List<Employee> employeeList = ReadFileUntil.readEmployeeFile(PATH);
+        employeeList = ReadFileUntil.readEmployeeFile(PATH);
         System.out.print("Nhập vào mã nhân viên cần sửa: ");
         int idRepair = Integer.parseInt(sc.nextLine());
 
-        for (int i =0; i< employeeList.size();i++) {
-            if (idRepair == employeeList.get(i).getId()) {
-                employeeList.get(i).setId(inputId());
-                employeeList.get(i).setName(inputName());
-                employeeList.get(i).setBirthDay(inputBirthDay());
-                employeeList.get(i).setGender(inputGender());
-                employeeList.get(i).setIdCard(inputIdCard());
-                employeeList.get(i).setPhone(inputPhone());
-                employeeList.get(i).setGmail(inputGmail());
-                employeeList.get(i).setDegree(inputDegree());
-                employeeList.get(i).setPosition(inputPosition());
-                employeeList.get(i).setSalary(inputSalary());
-
+        for (Employee employee : employeeList) {
+            if (idRepair == employee.getId()) {
+                employee.setId(inputId());
+                employee.setName(inputName());
+                employee.setBirthDay(inputBirthDay());
+                employee.setGender(inputGender());
+                employee.setIdCard(inputIdCard());
+                employee.setPhone(inputPhone());
+                employee.setGmail(inputGmail());
+                employee.setDegree(inputDegree());
+                employee.setPosition(inputPosition());
+                employee.setSalary(inputSalary());
+                WriteFileUntil.writeEmployeeFile(PATH,employeeList);
             }
         }
-        WriteFileUntil.writeEmployeeFile(PATH,employeeList);
+
         System.out.println("Sửa dữ liệu thành công!!!");
     }
 
     @Override
     public void remove() {
-        List<Employee> employeeList = ReadFileUntil.readEmployeeFile(PATH);
+        employeeList = ReadFileUntil.readEmployeeFile(PATH);
         System.out.print("Nhập vào mã nhân viên cần xóa: ");
         int id = Integer.parseInt(sc.nextLine());
+
         boolean isFlag = false;
         for (Employee employee : employeeList) {
             if (id == employee.getId()) {
-                System.out.println(" Bạn có chắc muốn xóa hay không? \n" +
-                        "1. Có \n" +
-                        "2. Không");
+                System.out.println(
+                         "Bạn có chắc muốn xóa hay không?\n"+
+                        "1.Có\n"+
+                        "2.Không");
                 int chooseYesNo = Integer.parseInt(sc.nextLine());
                 if (chooseYesNo == 1) {
                     employeeList.remove(employee);
+                    WriteFileUntil.writeEmployeeFile(PATH,employeeList);
                     System.out.println("Xóa thành công !!!");
                 }
                 isFlag = true;
@@ -188,6 +251,6 @@ public class EmployeeService implements IEmployeeService {
         if (!isFlag) {
             System.out.println("!! Không tìm thấy mã nhân viên !!");
         }
-        WriteFileUntil.writeEmployeeFile(PATH,employeeList);
     }
+
 }

@@ -43,7 +43,7 @@ public class MyListController {
             }
         } while (true);
     }
-//    public static void main(String[] args) {
+//    public static void Main(String[] args) {
 //        Student stu1= new Student(1,"hung",3);
 //        Student stu2= new Student(2,"hai",5);
 //        Student stu3= new Student(3,"hieu",6);

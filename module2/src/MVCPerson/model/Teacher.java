@@ -7,8 +7,8 @@ public class Teacher extends Person{
         this.salary = salary;
     }
 
-    public Teacher(int id, String name, double salary) {
-        super(id, name);
+    public Teacher(int id, String name, String dateOfBirth,double salary) {
+        super(id, name,dateOfBirth);
         this.salary = salary;
     }
 
@@ -26,7 +26,10 @@ public class Teacher extends Person{
                 " , salary=" + salary
                 ;
     }
-    public String getInfoTeacher(){
-        return String.format("%s,%s,%s\n",getId(),getName(),getSalary());
+
+    @Override
+    public String getInfo() {
+        return String.format("%s,%s,%s,%s\n",getId(),getName(),getDateOfBirth(),getSalary());
     }
+
 }

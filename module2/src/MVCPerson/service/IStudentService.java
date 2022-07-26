@@ -9,7 +9,7 @@ public interface IStudentService {
 
     void addStudent() throws IOException;
 
-    void sortUp();
+    void sortUp() throws IOException;
 
     void sortNameByBubble();
 }

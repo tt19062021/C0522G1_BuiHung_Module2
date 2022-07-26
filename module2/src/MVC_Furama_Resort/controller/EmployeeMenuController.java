@@ -15,7 +15,7 @@ public class EmployeeMenuController {
             System.out.println("1.\tDisplay list employees");
             System.out.println("2.\tAdd new employee");
             System.out.println("3.\tEdit employee");
-            System.out.println("4.\tReturn main menu");
+            System.out.println("4.\tReturn Main menu");
 
             choose = Integer.parseInt(scanner.nextLine());
 

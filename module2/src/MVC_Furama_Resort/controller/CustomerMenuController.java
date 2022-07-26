@@ -10,7 +10,7 @@ public class CustomerMenuController {
             System.out.println("1.\tDisplay list customers");
             System.out.println("2.\tAdd new customer");
             System.out.println("3.\tEdit customer");
-            System.out.println("4.\tReturn main menu");
+            System.out.println("4.\tReturn Main menu");
 
             choose = Integer.parseInt(scanner.nextLine());
 

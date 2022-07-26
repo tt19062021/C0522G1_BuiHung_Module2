@@ -9,7 +9,16 @@ public class Customer extends Person{
 
     @Override
     public String getInfo() {
-        return null;
+        return String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n",
+                this.getId()
+                ,this.getName()
+                ,this.getBirthDay(),
+                this.getGender()
+                ,this.getIdCard()
+                ,this.getPhone(),
+                this.getGmail()
+                ,this.customerType
+                ,this.address);
     }
 
     public Customer(String customerType, String address) {

@@ -6,7 +6,7 @@ import SS07_AbstractClass_Interface.Exercise.model.Shape;
 import SS07_AbstractClass_Interface.Exercise.model.Square;
 
 //public class ColorableTest {
-//    public static void main(String[] args) {
+//    public static void Main(String[] args) {
 //        Shape[] shapes = new Shape[3];
 //        shapes[0] = new Circle(5);
 //        shapes[1] = new Rectangle(3,7);

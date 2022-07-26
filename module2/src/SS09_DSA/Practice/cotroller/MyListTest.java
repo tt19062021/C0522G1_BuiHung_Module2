@@ -7,7 +7,7 @@ package SS09_DSA.Practice.cotroller;
 import java.util.Arrays;
 
 //public class MyListTest {
-//    public static void main(String[] args) {
+//    public static void Main(String[] args) {
 //        MyList<Integer> listInteger = new MyList<>();
 //        listInteger.add(1);
 //        listInteger.add(2);

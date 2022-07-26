@@ -9,7 +9,7 @@ public class PromotionMenuController {
         do {
             System.out.println("1.\tDisplay list customers use service");
             System.out.println("2.\tDisplay list customers get voucher");
-            System.out.println("3.\tReturn main menu");
+            System.out.println("3.\tReturn Main menu");
 
             choose = Integer.parseInt(scanner.nextLine());
 

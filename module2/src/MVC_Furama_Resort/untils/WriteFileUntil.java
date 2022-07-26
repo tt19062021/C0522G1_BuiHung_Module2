@@ -1,5 +1,6 @@
 package MVC_Furama_Resort.untils;
 
+import MVC_Furama_Resort.model.Customer;
 import MVC_Furama_Resort.model.Employee;
 
 import java.io.BufferedWriter;
@@ -24,6 +25,13 @@ public class WriteFileUntil {
         String data = "";
         for(Employee employee :employeeList){
             data += employee.getInfo();
+        }
+        writeFile(path,data);
+    }
+    public static void writeCustomerFile(String path, List<Customer> customerList) {
+        String data = "";
+        for(Customer customer :customerList){
+            data += customer.getInfo();
         }
         writeFile(path,data);
     }

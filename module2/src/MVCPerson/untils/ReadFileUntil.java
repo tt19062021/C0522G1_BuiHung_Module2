@@ -25,7 +25,7 @@ public class ReadFileUntil {
         String[] info ;
         for(String line : stringList){
             info =line.split(",");
-            students.add(new Student(Integer.parseInt(info[0]),info[1],Double.parseDouble(info[2])));
+            students.add(new Student(Integer.parseInt(info[0]),info[1],info[2],Double.parseDouble(info[3])));
         }
         return students;
      }
@@ -35,7 +35,7 @@ public class ReadFileUntil {
         String[] info ;
         for(String line : stringList){
             info =line.split(",");
-            teachers.add(new Teacher(Integer.parseInt(info[0]),info[1],Double.parseDouble(info[2])));
+            teachers.add(new Teacher(Integer.parseInt(info[0]),info[1],info[2],Double.parseDouble(info[3])));
         }
         return teachers;
     }

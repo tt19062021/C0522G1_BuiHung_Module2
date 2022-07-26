@@ -10,7 +10,7 @@ public class FacilityMenuController {
             System.out.println("1.\tDisplay list facility");
             System.out.println("2.\tAdd new facility");
             System.out.println("3.\tDisplay list facility maintenance");
-            System.out.println("4.\tReturn main menu");
+            System.out.println("4.\tReturn Main menu");
 
             choose = Integer.parseInt(scanner.nextLine());
 

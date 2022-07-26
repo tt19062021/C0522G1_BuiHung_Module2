@@ -5,29 +5,24 @@ import MVCPerson.model.Student;
 import MVCPerson.service.IStudentService;
 import MVCPerson.untils.ReadFileUntil;
 import MVCPerson.untils.WriteFileUntil;
-import SS11_Java_Collection_Framework.Exercise2.MVC_Product.model.Product;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.regex.PatternSyntaxException;
 
 public class StudentService implements IStudentService {
     private static Scanner scanner = new Scanner(System.in);
     private static List<Student> studentList = new ArrayList<>();
     private static SortByScoreUpService sortByScoreUpService = new SortByScoreUpService();
     private static SortByScoreDownService sortPriceDowndService = new SortByScoreDownService();
+    private static final String REGEX = "^(((0[1-9]|[12][0-9]|30)[-/](0[13-9]|1[012])|31[-/](0[13578]|1[02])" +
+            "|(0[1-9]|1[0-9]|2[0-8])[-/]?02)[-/][0-9]{4}|29[-/]02[-/]([0-9]{2}" +
+            "(([2468][048]|[02468][48])|[13579][26])|([13579][26]|[02468][048]|0[0-9]|1[0-6])00))$";
 
-//    static {
-//        studentList.add(new Student(1, "Nguyen Van Nam", 5.5));
-//        studentList.add(new Student(2, "Tra Van Kieu", 6.0));
-//        studentList.add(new Student(3, "Hoang Chau Cach Cach", 8));
-//        studentList.add(new Student(4, "Ngu A Ka", 9));
-//        studentList.add(new Student(5, "Dam Huong", 10));
-//        studentList.add(new Student(6, "Quach Tuan Du", 9));
-//    }
 
     @Override
     public void findAll() throws IOException {
-      studentList=  ReadFileUntil.readStudentFile("src/MVCPerson/untils/StudentList.txt");
+        studentList = ReadFileUntil.readStudentFile("src/MVCPerson/untils/StudentList.txt");
         for (Student student : studentList) {
             System.out.println(student);
         }
@@ -98,31 +93,45 @@ public class StudentService implements IStudentService {
                 System.out.println(e.getMessage());
             }
         }
-        System.out.print("Nhập tên:");
+
+        System.out.println("Nhập vào tên:");
         String name = scanner.nextLine();
 
-        double score =0;
-        while (true){
-            try{
+        String dateOfBirth;
+        do {
+            try {
+                System.out.println("Nhập vào ngày sinh: ");
+                dateOfBirth = scanner.nextLine();
+                if (dateOfBirth.matches(REGEX)) {
+                    System.out.println("dd/MM/YYYY: " + dateOfBirth.trim());
+                    break;
+                } else {
+                    System.out.println("Sai định dạng!!!");
+                }
+            } catch (PatternSyntaxException e) {
+                e.printStackTrace();
+            }
+        } while (true);
+
+        double score = 0;
+        while (true) {
+            try {
                 System.out.print("Nhập điểm :");
                 score = Double.parseDouble(scanner.nextLine());
                 break;
-            }catch(NumberFormatException e){
+            } catch (NumberFormatException e) {
                 System.out.print("Vui lòng nhập số!");
             }
-
         }
-//        System.out.print("Nhập điểm: ");
-//        double score = Double.parseDouble(scanner.nextLine());
 
-        Student student = new Student(id, name, score);
-        students.add(student);
+        students.add(new Student(id, name, dateOfBirth, score));
 
-        WriteFileUntil.writeStudentFile("src/MVCPerson/untils/StudentList.txt",students);
+        WriteFileUntil.writeStudentFile("src/MVCPerson/untils/StudentList.txt", students);
     }
 
     @Override
-    public void sortUp() {
+    public void sortUp() throws IOException {
+        studentList = ReadFileUntil.readStudentFile("src/MVCPerson/untils/StudentList.txt");
         int chose;
         do {
             System.out.println("1.Sắp xếp điểm tăng dần\n" +
@@ -136,6 +145,7 @@ public class StudentService implements IStudentService {
                     for (Student student : studentList) {
                         System.out.println(student);
                     }
+                    WriteFileUntil.writeStudentFile("src/MVCPerson/untils/StudentList.txt", studentList);
                     break;
                 case 2:
                     studentList.sort(sortPriceDowndService);

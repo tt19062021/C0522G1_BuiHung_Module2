@@ -11,15 +11,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.PatternSyntaxException;
 
 public class TeacherService implements ITeacherService {
     private static Scanner scanner = new Scanner(System.in);
     private static List<Teacher> teacherList = new ArrayList<>();
+    private static final String REGEX = "^(((0[1-9]|[12][0-9]|30)[-/](0[13-9]|1[012])|31[-/](0[13578]|1[02])" +
+            "|(0[1-9]|1[0-9]|2[0-8])[-/]?02)[-/][0-9]{4}|29[-/]02[-/]([0-9]{2}" +
+            "(([2468][048]|[02468][48])|[13579][26])|([13579][26]|[02468][048]|0[0-9]|1[0-6])00))$";
 
-    //    static {
-//        teacherList.add(new Teacher(12,"Mac Van Khoa",1000000));
-//        teacherList.add(new Teacher(11,"Quynh Anh",1200000));
-//    }
     @Override
     public void findAll() throws IOException {
         teacherList = ReadFileUntil.readTeacherFile("src/MVCPerson/untils/TeacherList.txt");
@@ -106,8 +106,24 @@ public class TeacherService implements ITeacherService {
             }
 
         }
-        Teacher teacher = new Teacher(id, name, salary);
+        String dateOfBirth;
+        do {
+            try {
+                System.out.println("Nhập vào ngày sinh: ");
+                dateOfBirth = scanner.nextLine();
+                if (dateOfBirth.matches(REGEX)) {
+                    System.out.println("dd/MM/YYYY: " + dateOfBirth.trim());
+                    break;
+                } else {
+                    System.out.println("Sai định dạng!!!");
+                }
+            } catch (PatternSyntaxException e) {
+                e.printStackTrace();
+            }
+        } while (true);
+
+        Teacher teacher = new Teacher(id, name, dateOfBirth, salary);
         teacherList.add(teacher);
-        WriteFileUntil.writeTeacherFile("src/MVCPerson/untils/TeacherList.txt",teacherList);
+        WriteFileUntil.writeTeacherFile("src/MVCPerson/untils/TeacherList.txt", teacherList);
     }
 }

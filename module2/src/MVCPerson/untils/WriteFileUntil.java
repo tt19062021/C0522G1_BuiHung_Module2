@@ -20,14 +20,14 @@ public class WriteFileUntil {
     public static void writeStudentFile(String path, List<Student> students) throws IOException {
         String data = "";
         for(Student student :students){
-            data += student.getInfoStudent();
+            data += student.getInfo();
         }
         writeFile(path,data);
     }
     public static void writeTeacherFile(String path, List<Teacher> teachers) throws IOException {
         String data = "";
         for (Teacher teacher : teachers) {
-            data += teacher.getInfoTeacher();
+            data += teacher.getInfo();
         }
         writeFile(path,data);
     }

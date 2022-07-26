@@ -6,12 +6,9 @@ public class Student extends Person{
     public Student() {
     }
 
-    public Student(double score) {
-        this.score = score;
-    }
 
-    public Student(int id, String name, double score) {
-        super(id, name);
+    public Student(int id, String name, String dateOfBirth, double score) {
+        super(id, name, dateOfBirth);
         this.score = score;
     }
 
@@ -28,7 +25,10 @@ public class Student extends Person{
         return super.toString() +
                 " ,score= " + score ;
     }
-    public String getInfoStudent(){
-        return String.format("%s,%s,%s\n",getId(),getName(),getScore());
+
+    @Override
+    public String getInfo() {
+        return String.format("%s,%s,%s,%s\n",getId(),getName(),getDateOfBirth(),getScore());
     }
+
 }
