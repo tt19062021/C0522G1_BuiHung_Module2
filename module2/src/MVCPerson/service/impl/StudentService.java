@@ -93,14 +93,13 @@ public class StudentService implements IStudentService {
                 System.out.println(e.getMessage());
             }
         }
-
-        System.out.println("Nhập vào tên:");
+        System.out.print("Nhập tên: ");
         String name = scanner.nextLine();
 
         String dateOfBirth;
         do {
             try {
-                System.out.println("Nhập vào ngày sinh: ");
+                System.out.print("Nhập vào ngày sinh: ");
                 dateOfBirth = scanner.nextLine();
                 if (dateOfBirth.matches(REGEX)) {
                     System.out.println("dd/MM/YYYY: " + dateOfBirth.trim());

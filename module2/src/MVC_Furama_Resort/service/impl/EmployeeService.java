@@ -5,8 +5,6 @@ import MVC_Furama_Resort.service.IEmployeeService;
 import MVC_Furama_Resort.untils.ReadFileUntil;
 import MVC_Furama_Resort.untils.WriteFileUntil;
 
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -14,10 +12,10 @@ import java.util.Scanner;
 public class EmployeeService implements IEmployeeService {
     private static List<Employee> employeeList = new ArrayList<>();
     private static final String PATH = "src/MVC_Furama_Resort/untils/listemployee.csv";
-     Scanner sc = new Scanner(System.in);
+    Scanner sc = new Scanner(System.in);
 
     @Override
-    public void display() throws IOException {
+    public void display() {
         employeeList = ReadFileUntil.readEmployeeFile(PATH);
         for (Employee employee : employeeList) {
             System.out.println(employee);
@@ -55,16 +53,17 @@ public class EmployeeService implements IEmployeeService {
     }
 
     public String inputGender() {
-        System.out.print("Nhập giới tính: \n"+
-                "1.Nam\n"+
+        System.out.println("Nhập giới tính: \n" +
+                "1.Nam\n" +
                 "2.Nữ");
-        int chose = 0 ;
-        do{
-            try{
-                chose  = Integer.parseInt(sc.nextLine());
-            }catch(NumberFormatException e){
+        int chose = 0;
+        do {
+            try {
+                chose = Integer.parseInt(sc.nextLine());
+            } catch (NumberFormatException e) {
                 System.out.println("Vui lòng nhập số!!");
-            }switch(chose){
+            }
+            switch (chose) {
                 case 1:
                     return "Nam";
                 case 2:
@@ -72,7 +71,7 @@ public class EmployeeService implements IEmployeeService {
                 default:
                     System.out.println("Nhập không đúng!!,Vui lòng nhập lại.");
             }
-        }while(true);
+        } while (true);
     }
 
     public int inputIdCard() {
@@ -109,18 +108,19 @@ public class EmployeeService implements IEmployeeService {
     }
 
     public String inputDegree() {
-        System.out.print("Nhập trình độ hiện có:\n" +
+        System.out.println("Nhập trình độ hiện có:\n" +
                 "1.Đại học\n" +
                 "2.Cao đẳng\n" +
                 "3.Trung cấp\n" +
                 "4.Sau đại học");
-        int chose = 0 ;
-        do{
-            try{
-                chose  = Integer.parseInt(sc.nextLine());
-            }catch(NumberFormatException e){
+        int chose = 0;
+        do {
+            try {
+                chose = Integer.parseInt(sc.nextLine());
+            } catch (NumberFormatException e) {
                 System.out.println("Vui lòng nhập số!!");
-            }switch(chose){
+            }
+            switch (chose) {
                 case 1:
                     return "Đại học";
                 case 2:
@@ -132,7 +132,7 @@ public class EmployeeService implements IEmployeeService {
                 default:
                     System.out.println("Nhập không đúng!!,Vui lòng nhập lại.");
             }
-        }while(true);
+        } while (true);
     }
 
     public String inputPosition() {
@@ -143,13 +143,14 @@ public class EmployeeService implements IEmployeeService {
                 "4.Chuyên viên\n" +
                 "5.Giám sát\n" +
                 "6.Giám đốc");
-        int chose = 0 ;
-        do{
-            try{
-                chose  = Integer.parseInt(sc.nextLine());
-            }catch(NumberFormatException e){
+        int chose = 0;
+        do {
+            try {
+                chose = Integer.parseInt(sc.nextLine());
+            } catch (NumberFormatException e) {
                 System.out.println("Vui lòng nhập số!!");
-            }switch(chose){
+            }
+            switch (chose) {
                 case 1:
                     return "Lễ tân";
                 case 2:
@@ -165,7 +166,7 @@ public class EmployeeService implements IEmployeeService {
                 default:
                     System.out.println("Nhập không đúng!!,Vui lòng nhập lại.");
             }
-        }while(true);
+        } while (true);
     }
 
     public int inputSalary() {
@@ -184,7 +185,7 @@ public class EmployeeService implements IEmployeeService {
 
     @Override
     public void add() {
-         employeeList = ReadFileUntil.readEmployeeFile(PATH);
+        employeeList = ReadFileUntil.readEmployeeFile(PATH);
         Employee employee = new Employee(inputId()
                 , inputName()
                 , inputBirthDay()
@@ -218,39 +219,39 @@ public class EmployeeService implements IEmployeeService {
                 employee.setDegree(inputDegree());
                 employee.setPosition(inputPosition());
                 employee.setSalary(inputSalary());
-                WriteFileUntil.writeEmployeeFile(PATH,employeeList);
+                WriteFileUntil.writeEmployeeFile(PATH, employeeList);
             }
         }
 
         System.out.println("Sửa dữ liệu thành công!!!");
     }
 
-    @Override
-    public void remove() {
-        employeeList = ReadFileUntil.readEmployeeFile(PATH);
-        System.out.print("Nhập vào mã nhân viên cần xóa: ");
-        int id = Integer.parseInt(sc.nextLine());
-
-        boolean isFlag = false;
-        for (Employee employee : employeeList) {
-            if (id == employee.getId()) {
-                System.out.println(
-                         "Bạn có chắc muốn xóa hay không?\n"+
-                        "1.Có\n"+
-                        "2.Không");
-                int chooseYesNo = Integer.parseInt(sc.nextLine());
-                if (chooseYesNo == 1) {
-                    employeeList.remove(employee);
-                    WriteFileUntil.writeEmployeeFile(PATH,employeeList);
-                    System.out.println("Xóa thành công !!!");
-                }
-                isFlag = true;
-                break;
-            }
-        }
-        if (!isFlag) {
-            System.out.println("!! Không tìm thấy mã nhân viên !!");
-        }
-    }
+//    @Override
+//    public void remove() {
+//        employeeList = ReadFileUntil.readEmployeeFile(PATH);
+//        System.out.print("Nhập vào mã nhân viên cần xóa: ");
+//        int id = Integer.parseInt(sc.nextLine());
+//
+//        boolean isFlag = false;
+//        for (Employee employee : employeeList) {
+//            if (id == employee.getId()) {
+//                System.out.println(
+//                        "Bạn có chắc muốn xóa hay không?\n" +
+//                                "1.Có\n" +
+//                                "2.Không");
+//                int chooseYesNo = Integer.parseInt(sc.nextLine());
+//                if (chooseYesNo == 1) {
+//                    employeeList.remove(employee);
+//                    WriteFileUntil.writeEmployeeFile(PATH, employeeList);
+//                    System.out.println("Xóa thành công !!!");
+//                }
+//                isFlag = true;
+//                break;
+//            }
+//        }
+//        if (!isFlag) {
+//            System.out.println("!! Không tìm thấy mã nhân viên !!");
+//        }
+//    }
 
 }

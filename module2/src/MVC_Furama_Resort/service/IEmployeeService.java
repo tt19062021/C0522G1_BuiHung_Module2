@@ -2,9 +2,7 @@ package MVC_Furama_Resort.service;
 
 import java.io.IOException;
 
-public interface IEmployeeService {
-    void display() throws IOException;
-    void add();
+public interface IEmployeeService extends IService {
     void repair();
-    void remove();
+
 }

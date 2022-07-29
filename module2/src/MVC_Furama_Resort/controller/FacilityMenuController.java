@@ -1,8 +1,14 @@
 package MVC_Furama_Resort.controller;
 
+import MVC_Furama_Resort.service.IFacilityService;
+import MVC_Furama_Resort.service.impl.FacilityService;
+
 import java.util.Scanner;
 
 public class FacilityMenuController {
+    private static AddNewFacilityMenu addNewFacilityMenu = new AddNewFacilityMenu();
+    private static IFacilityService iFacilityService = new FacilityService();
+    private static FacilityService facilityService = new FacilityService();
     public void facilityMenu() {
         Scanner scanner = new Scanner(System.in);
         int choose;
@@ -20,10 +26,13 @@ public class FacilityMenuController {
             }
             switch (choose) {
                 case 1:
+                    iFacilityService.display();
                     break;
                 case 2:
+                    addNewFacilityMenu.addFacility();
                     break;
                 case 3:
+                    facilityService.displayMaintenance();
                     break;
                 case 4:
                     return;

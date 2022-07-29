@@ -1,8 +1,12 @@
 package MVC_Furama_Resort.controller;
 
+import MVC_Furama_Resort.service.ICustomerService;
+import MVC_Furama_Resort.service.impl.CustomerService;
+
 import java.util.Scanner;
 
 public class CustomerMenuController {
+    private static ICustomerService iCustomerService = new CustomerService();
     public void customerMenu() {
         Scanner scanner = new Scanner(System.in);
         int choose;
@@ -20,10 +24,13 @@ public class CustomerMenuController {
             }
             switch (choose) {
                 case 1:
+                    iCustomerService.display();
                     break;
                 case 2:
+                    iCustomerService.add();
                     break;
                 case 3:
+                    iCustomerService.repair();
                     break;
                 case 4:
                     return;

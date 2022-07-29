@@ -1,4 +1,4 @@
 package MVC_Furama_Resort.service;
 
-public interface IContractService {
+public interface IContractService extends IService{
 }

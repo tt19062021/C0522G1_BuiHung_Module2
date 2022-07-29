@@ -1,6 +1,7 @@
 package MVC_Furama_Resort.model;
 
 public abstract class Facility {
+    private String serviceID;
     private String serviceName;
     private double area;
     private int cost;
@@ -10,12 +11,21 @@ public abstract class Facility {
     public Facility() {
     }
 
-    public Facility(String serviceName, double area, int cost, int numberOfPeople, String rentalType) {
+    public Facility(String serviceID, String serviceName, double area, int cost, int numberOfPeople, String rentalType) {
+        this.serviceID = serviceID;
         this.serviceName = serviceName;
         this.area = area;
         this.cost = cost;
         this.numberOfPeople = numberOfPeople;
         this.rentalType = rentalType;
+    }
+
+    public String getServiceID() {
+        return serviceID;
+    }
+
+    public void setServiceID(String serviceID) {
+        this.serviceID = serviceID;
     }
 
     public String getServiceName() {
@@ -60,11 +70,12 @@ public abstract class Facility {
 
     @Override
     public String toString() {
-        return
-                "serviceName= " + serviceName +
+        return  "serviceID= " + serviceID +
+                ", serviceName= " + serviceName +
                 ", area= " + area +
                 ", cost= " + cost +
                 ", numberOfPeople= " + numberOfPeople +
                 ", rentalType= " + rentalType ;
     }
+    public abstract String getInfo();
 }
